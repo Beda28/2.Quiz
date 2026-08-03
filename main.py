@@ -1,3 +1,4 @@
-from quiz import question
+from quiz_game import QuizGame
 
-question()
+game = QuizGame()
+game.run()

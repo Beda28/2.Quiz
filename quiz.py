@@ -1,11 +1,14 @@
 from input import read_int
-from default_quiz import DEFAULT_QUIZZES
+# from default_quiz import DEFAULT_QUIZZES
+from storage import loadstate
 
 import os
 import time
 
 def question():
-    for quiz in DEFAULT_QUIZZES:
+    quizzes = loadstate()["quizzes"]
+
+    for quiz in quizzes:
         os.system("cls")
         print(quiz["title"])
         choices(quiz["choices"])

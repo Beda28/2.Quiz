@@ -32,3 +32,26 @@ DEFAULT_QUIZZES - 딕셔너리로 구성된 기본 퀴즈 데이터
 # 사용된 기능들
 [](리스트) - 여러개의 퀴즈 딕셔너리를 순서대로 저장한다.
 ```
+
+## 5. 퀴즈 저장 파일 불러오기
+```bash
+# 생성된 함수
+default_state - 기본 퀴즈를 반환합니다.
+loadstate     - state.json에서 저장파일을 불러옵니다.
+savestate     - 현재 상태를 state.json에 저장합니다.
+
+# 사용된 기능들
+Path                     - 파일의 위치를 경로 객체로 관리합니다.
+deppcopy                 - 원본에 영향을 주지 않도록 복사본을 만듭니다.
+with                     - 파일 사용이 끝나면 자동으로 파일을 닫습니다.
+json.load                - JSON 파일을 파이썬 데이터로 불러옵니다.
+json.dump                - 파이썬 데이터를 JSON 파일로 저장합니다.
+try / except             - 실행 중 발생한 예외를 구분하여 처리합니다.
+isinstance(데이터, 자료형) - 데이터가 지정한 자료형인지 확인합니다.
+
+# 예외처리
+FileNotFoundError - 파일을 찾을 수 없을때
+ValueError        - 데이터 구조가 잘못되었을 때
+JSONDecodeError   - JSON 형식이 잘못되었을 때
+OSError           - 파일을 읽거나 저장할 수 없을 때
+TypeError         - 잘못된 자료형이 전달되었을 때

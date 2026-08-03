@@ -1,21 +1,17 @@
 from input import read_int
+from default_quiz import DEFAULT_QUIZZES
+
+import os
+import time
 
 def question():
-    quiz = {
-        "title": "대한민국의 수도는 어디일까요?",
-        "choices":{
-            1: "서울",
-            2: "부산",
-            3: "대구",
-            4: "인천"
-        },
-        "answer": 1
-    }
+    for quiz in DEFAULT_QUIZZES:
+        os.system("cls")
+        print(quiz["title"])
+        choices(quiz["choices"])
+        answer(quiz["answer"])
+        time.sleep(1)
 
-    print(quiz["title"])
-    choices(quiz["choices"])
-    answer(quiz["answer"])
-    
 def choices(choice_list: dict):
     for number, content in choice_list.items():
         print(f"{number}. {content}")

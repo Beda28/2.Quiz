@@ -1,11 +1,11 @@
 import os
 import random
 import time
-from datetime import datetime
 
-from input import read_int, read_str
-from quiz import Quiz
-from storage import loadstate, savestate
+from datetime import datetime
+from input    import read_int, read_str
+from quiz     import Quiz
+from storage  import loadstate, savestate
 
 class QuizGame:
     def __init__(self):

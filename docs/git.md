@@ -33,3 +33,15 @@ git push --set-upstream origin <브랜치이름>
 ```bash
 PS [ 프로젝트 폴더 경로 ]> git push --set-upstream origin feature/quiz-add
 ```
+
+## 4. 원격 저장소 복제
+
+```bash
+git clone <저장소 주소>
+```
+
+## 5. 원격 저장소에서 최신 변경사항 받기
+
+```bash
+git pull
+```

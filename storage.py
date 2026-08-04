@@ -1,7 +1,6 @@
 import json
-from copy import deepcopy
-from pathlib import Path
-
+from copy         import deepcopy
+from pathlib      import Path
 from default_quiz import DEFAULT_QUIZZES
 
 STATEFile = Path(__file__).with_name("state.json")

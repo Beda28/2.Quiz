@@ -35,3 +35,15 @@ class Quiz:
         else:
             print(f"틀렸습니다. 정답은 {correct_answer}번입니다.")
             return False
+
+    def delete_quiz(self, quizzes):
+        if not quizzes:
+            return None
+
+        print("삭제할 퀴즈를 선택해주세요.\n")
+        for index, quiz in enumerate(quizzes, start=1):
+            title = quiz.get("title", "제목 없음")
+            print(f"{index}. {title}")
+
+        delete_number = read_int(f"\n삭제할 퀴즈 번호를 입력해주세요 (1~{len(quizzes)}): ", 1, len(quizzes))
+        return quizzes.pop(delete_number - 1)

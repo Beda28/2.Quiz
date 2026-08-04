@@ -32,5 +32,6 @@ def savestate(state):
     try:
         with STATEFile.open("w", encoding="utf-8") as f:
             json.dump(state, f, ensure_ascii=False, indent=4)
+        return True
     except (OSError, TypeError):
         print("파일을 저장할 수 없습니다.")

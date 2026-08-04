@@ -16,13 +16,14 @@ class QuizGame:
         while self.running:
             self.clear_screen()
             self.show_menu()
-            choice = read_int("선택지를 입력해주세요 : ", 1, 5)
+            choice = read_int("선택지를 입력해주세요 : ", 1, 6)
 
             if choice   == 1: self.play_quiz()
             elif choice == 2: self.add_quiz()
             elif choice == 3: self.show_quiz_list()
             elif choice == 4: self.show_score()
-            elif choice == 5: self.exit_game()
+            elif choice == 5: self.delete_quiz()
+            elif choice == 6: self.exit_game()
             else:
                 print("잘못된 선택입니다. 다시 시도해주세요.")
                 time.sleep(1)
@@ -34,7 +35,8 @@ class QuizGame:
         print("2. 퀴즈 추가")
         print("3. 퀴즈 목록")
         print("4. 점수 확인")
-        print("5. 게임 종료")
+        print("5. 퀴즈 삭제")
+        print("6. 게임 종료")
 
     def add_quiz(self):
         self.clear_screen()
@@ -90,6 +92,27 @@ class QuizGame:
             print(f"{quiz_number}. {quiz['title']}")
 
         input ("\n메뉴로 돌아가려면 Enter를 누르세요...")
+
+    def delete_quiz(self):
+        self.clear_screen()
+        quizzes = self.state.get("quizzes", [])
+
+        if not quizzes:
+            input("삭제할 퀴즈가 없습니다. Enter를 누르세요...")
+            return
+
+        deleted_quiz = self.quiz_manager.delete_quiz(quizzes)
+
+        if deleted_quiz is None:
+            input("삭제할 퀴즈가 없습니다. Enter를 누르세요...")
+            return
+
+        if savestate(self.state):
+            title = deleted_quiz.get("title", "제목 없음")
+            input(
+                f"'{title}' 퀴즈를 삭제했습니다.\n"
+                "메뉴로 돌아가려면 Enter를 누르세요..."
+            )
 
     def show_score(self):
         self.clear_screen()

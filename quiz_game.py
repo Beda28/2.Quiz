@@ -48,11 +48,13 @@ class QuizGame:
             choices[index] = read_str(f"선택지 {index}: ")
 
         answer = read_int(f"정답 번호를 입력해주세요 (1 ~ {choice_len}) : ", 1, choice_len)
+        hint = read_str("힌트를 입력해주세요 : ")
 
         quiz = {
             "title":   title,
             "choices": choices,
-            "answer":  answer
+            "answer":  answer,
+            "hint":    hint,
         }
 
         self.state["quizzes"].append(quiz)
@@ -64,22 +66,26 @@ class QuizGame:
         random.shuffle(quizzes)
         quiz_count       = read_int(f"몇 문제를 풀까요? (1~{len(quizzes)}): ", 1, len(quizzes))
         selected_quizzes = quizzes[:quiz_count]
-        score, total     = self.quiz_manager.question(selected_quizzes)
+        correct_count, total, hint_count = self.quiz_manager.question(selected_quizzes)
+
+        raw_score = correct_count / total * 100
+        final_score = max(raw_score - hint_count * 10, 0)
 
         best_score  = self.state.get("best_score", 0)
-        is_new_best = score / total * 100 > best_score
+        is_new_best = final_score > best_score
 
         if is_new_best:
-            self.state["best_score"]   = score / total * 100
-            self.state["best_correct"] = score
+            self.state["best_score"]   = final_score
+            self.state["best_correct"] = correct_count
             self.state["best_total"]   = total
 
         savestate(self.state)
         self.clear_screen()
 
         print("최종 결과")
-        print(f"맞춘 문제 수: {score}/{total}")
-        print(f"점수: {score / total * 100:.2f}점")
+        print(f"맞춘 문제 수: {correct_count}/{total}")
+        print(f"점수: {final_score:.2f}점")
+        print(f"힌트 사용: {hint_count}회")
         
         if is_new_best: print("축하합니다! 새로운 최고 점수를 달성했습니다!")
         else:           print(f"최고 점수: {best_score:.2f}점")

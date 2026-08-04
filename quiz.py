@@ -1,21 +1,28 @@
 from input import read_int
-# from default_quiz import DEFAULT_QUIZZES
-# from storage import loadstate
 
 import os
 import time
 
+
 class Quiz:
     def question(self, quizzes):
-        score = 0
+        correct_count = 0
+        hint_count = 0
 
         for quiz in quizzes:
             self.show_quiz(quiz)
-            if self.answer(quiz["answer"], len(quiz["choices"])):
-                score += 1
+
+            is_correct, hint_used = self.answer(quiz)
+
+            if is_correct:
+                correct_count += 1
+
+            if hint_used:
+                hint_count += 1
+
             time.sleep(1)
 
-        return score, len(quizzes)
+        return correct_count, len(quizzes), hint_count
 
     def show_quiz(self, quiz):
         os.system("cls")
@@ -23,27 +30,42 @@ class Quiz:
         self.choices(quiz["choices"])
 
     def choices(self, choice_list: dict):
+        print("0. 힌트 보기")
         for number, content in choice_list.items():
             print(f"{number}. {content}")
 
-    def answer(self, correct_answer: int, max_choice: int):
-        user_answer = read_int("정답을 입력해주세요 : ", 1, max_choice)
+    def answer(self, quiz):
+        hint_used = False
+        max_choice = len(quiz["choices"])
 
-        if user_answer == correct_answer:
-            print("정답입니다!")
-            return True
-        else:
-            print(f"틀렸습니다. 정답은 {correct_answer}번입니다.")
-            return False
+        while True:
+            user_answer = read_int("정답을 입력해주세요 : ", 0, max_choice)
+
+            if user_answer == 0:
+                if hint_used: print("이미 힌트를 사용했습니다.")
+                else:
+                    print(f"힌트: {quiz.get('hint', '등록된 힌트가 없습니다.')}")
+                    hint_used = True
+                continue
+
+            if user_answer == quiz["answer"]:
+                print("정답입니다!")
+                return True, hint_used
+
+            print(f"틀렸습니다. 정답은 {quiz['answer']}번입니다.")
+            return False, hint_used
 
     def delete_quiz(self, quizzes):
         if not quizzes:
             return None
 
         print("삭제할 퀴즈를 선택해주세요.\n")
+        print("0. 취소")
         for index, quiz in enumerate(quizzes, start=1):
             title = quiz.get("title", "제목 없음")
             print(f"{index}. {title}")
 
-        delete_number = read_int(f"\n삭제할 퀴즈 번호를 입력해주세요 (1~{len(quizzes)}): ", 1, len(quizzes))
+        delete_number = read_int(f"\n삭제할 퀴즈 번호를 입력해주세요 (0~{len(quizzes)}): ", 0, len(quizzes))
+        if delete_number == 0:
+            return None
         return quizzes.pop(delete_number - 1)

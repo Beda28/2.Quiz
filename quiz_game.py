@@ -57,6 +57,10 @@ class QuizGame:
             input("퀴즈가 성공적으로 추가되었습니다. 메뉴로 돌아가려면 Enter를 누르세요...")
 
     def play_quiz(self):
+        if not self.state["quizzes"]:
+            input("등록된 퀴즈가 없습니다. Enter를 누르세요...")
+            return
+
         quizzes          = [Quiz.from_dict(quiz) for quiz in self.state["quizzes"]]
         random.shuffle(quizzes)
         quiz_count       = read_int(f"몇 문제를 풀까요? (1~{len(quizzes)}): ", 1, len(quizzes))
@@ -175,9 +179,6 @@ class QuizGame:
                 )
 
         input("\n메뉴로 돌아가려면 Enter를 누르세요...")
-
-    def show_history(self):
-        self.show_score()
 
     def exit_game(self):
         savestate(self.state)

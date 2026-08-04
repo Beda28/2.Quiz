@@ -51,8 +51,7 @@
             "answer": 3
         }
     ],
-    "score": 0,
-    "beat_score": 80.0,
-    "best_correct": 4,
-    "best_total": 5
+    "best_score": 0,
+    "best_correct": 0,
+    "best_total": 0
 }

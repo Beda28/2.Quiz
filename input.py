@@ -1,13 +1,29 @@
-def read_int(prompt):
-    input_value = int(input(prompt))
+def read_int(prompt, minimum, maximum):
+    while True:
+        try:
+            value = input(prompt).strip()
 
-    if input_value < 0:
-        return ("음수는 입력할 수 없습니다.")
-    return input_value
+            if value == "":
+                print("빈 입력은 사용할 수 없습니다.")
+                continue
+
+            number = int(value)
+
+            if not minimum <= number <= maximum:
+                print(f"{minimum}~{maximum} 사이의 숫자를 입력해주세요.")
+                continue
+
+            return number
+
+        except ValueError:
+            print("숫자를 입력해주세요.")
 
 def read_str(prompt):
-    input_value = input(prompt)
+    while True:
+        value = input(prompt).strip()
 
-    if input_value.strip() == "":
-        return ("빈 문자열은 입력할 수 없습니다.")
-    return input_value
+        if value == "":
+            print("빈 문자열은 입력할 수 없습니다.")
+            continue
+
+        return value

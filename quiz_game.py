@@ -55,8 +55,9 @@ class QuizGame:
         input ("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def show_score(self):
+        total = len(self.state["quizzes"])
         self.clear_screen()
-        print(f"현재 점수: {self.state['score']}점")
+        print(f"현재 점수: {self.state['score'] / total * 100.0:.0f}점")
         input("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def exit_game(self):

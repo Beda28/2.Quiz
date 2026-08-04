@@ -63,3 +63,5 @@ cd 2.Quiz
 ## 개발 기록
 
 기능별 구현 과정과 사용한 Python 기능은 [docs/history.md](docs/history.md)에서 확인할 수 있습니다.
+
+깃허브 활용 실습과 관련된 내용은 [docs/git.md](docs/git.md)에서 확인할 수 있습니다.

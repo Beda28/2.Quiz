@@ -16,7 +16,7 @@ def question(quizzes):
             score += 1
         time.sleep(1)
 
-    return score
+    return score, len(quizzes)
 
 def choices(choice_list: dict):
     for number, content in choice_list.items():

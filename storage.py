@@ -11,7 +11,8 @@ def default_state():
         "quizzes":      deepcopy(DEFAULT_QUIZZES),
         "best_score":   0,
         "best_correct": 0,
-        "best_total":   0
+        "best_total":   0,
+        "history":      [],
     }
 
 def loadstate():

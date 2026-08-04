@@ -56,7 +56,16 @@
             "hint": "옛 로마 제국의 중심지입니다."
         }
     ],
-    "best_score": 0,
-    "best_correct": 0,
-    "best_total": 0
+    "best_score": 80.0,
+    "best_correct": 4,
+    "best_total": 5,
+    "history": [
+        {
+            "played_at": "2026-08-04 13:56:11",
+            "total": 5,
+            "correct": 4,
+            "hint_count": 0,
+            "score": 80.0
+        }
+    ]
 }

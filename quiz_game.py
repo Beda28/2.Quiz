@@ -58,9 +58,11 @@ class QuizGame:
             input("퀴즈가 성공적으로 추가되었습니다. 메뉴로 돌아가려면 Enter를 누르세요...")
 
     def play_quiz(self):
-        quizzes      = self.state["quizzes"]
+        quizzes          = self.state["quizzes"].copy()
         random.shuffle(quizzes)
-        score, total = self.quiz_manager.question(quizzes)
+        quiz_count       = read_int(f"몇 문제를 풀까요? (1~{len(quizzes)}): ", 1, len(quizzes))
+        selected_quizzes = quizzes[:quiz_count]
+        score, total     = self.quiz_manager.question(selected_quizzes)
 
         best_score  = self.state.get("best_score", 0)
         is_new_best = score / total * 100 > best_score

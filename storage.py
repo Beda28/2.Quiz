@@ -8,10 +8,10 @@ STATEFile = Path(__file__).with_name("state.json")
 
 def default_state():
     return {
-        "quizzes": deepcopy(DEFAULT_QUIZZES),
-        "best_score": 0,
+        "quizzes":      deepcopy(DEFAULT_QUIZZES),
+        "best_score":   0,
         "best_correct": 0,
-        "best_total": 0
+        "best_total":   0
     }
 
 def loadstate():
@@ -22,14 +22,10 @@ def loadstate():
             raise ValueError
         return state
     
-    except FileNotFoundError:
-        print("파일을 찾을 수 없습니다. 기본 퀴즈를 불러옵니다.")
-    except json.JSONDecodeError:
-        print("파일이 올바른 JSON 형식이 아닙니다. 기본 퀴즈를 불러옵니다.")
-    except ValueError:
-        print("데이터가 올바르지 않습니다. 기본 퀴즈를 불러옵니다.")
-    except OSError:
-        print("파일을 읽을 수 없습니다. 기본 퀴즈를 불러옵니다.")
+    except FileNotFoundError:    print("파일을 찾을 수 없습니다. 기본 퀴즈를 불러옵니다.")
+    except json.JSONDecodeError: print("파일이 올바른 JSON 형식이 아닙니다. 기본 퀴즈를 불러옵니다.")
+    except ValueError:           print("데이터가 올바르지 않습니다. 기본 퀴즈를 불러옵니다.")
+    except OSError:              print("파일을 읽을 수 없습니다. 기본 퀴즈를 불러옵니다.")
     return default_state()
 
 def savestate(state):

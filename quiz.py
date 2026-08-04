@@ -5,29 +5,33 @@ from input import read_int
 import os
 import time
 
-def question(quizzes):
-    score = 0
+class Quiz:
+    def question(self, quizzes):
+        score = 0
 
-    for quiz in quizzes:
+        for quiz in quizzes:
+            self.show_quiz(quiz)
+            if self.answer(quiz["answer"], len(quiz["choices"])):
+                score += 1
+            time.sleep(1)
+
+        return score, len(quizzes)
+
+    def show_quiz(self, quiz):
         os.system("cls")
         print(quiz["title"])
-        choices(quiz["choices"])
-        if answer(quiz["answer"], len(quiz["choices"])):
-            score += 1
-        time.sleep(1)
+        self.choices(quiz["choices"])
 
-    return score, len(quizzes)
+    def choices(self, choice_list: dict):
+        for number, content in choice_list.items():
+            print(f"{number}. {content}")
 
-def choices(choice_list: dict):
-    for number, content in choice_list.items():
-        print(f"{number}. {content}")
+    def answer(self, correct_answer: int, max_choice: int):
+        user_answer = read_int("정답을 입력해주세요 : ", 1, max_choice)
 
-def answer(correct_answer: int, max_choice: int):
-    user_answer = read_int("정답을 입력해주세요 : ", 1, max_choice)
-
-    if user_answer == correct_answer:
-        print("정답입니다!")
-        return True
-    else:
-        print(f"틀렸습니다. 정답은 {correct_answer}번입니다.")
-        return False
+        if user_answer == correct_answer:
+            print("정답입니다!")
+            return True
+        else:
+            print(f"틀렸습니다. 정답은 {correct_answer}번입니다.")
+            return False

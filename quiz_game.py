@@ -1,4 +1,5 @@
 import os
+import random
 import time
 
 from input import read_int, read_str
@@ -58,6 +59,7 @@ class QuizGame:
 
     def play_quiz(self):
         quizzes      = self.state["quizzes"]
+        random.shuffle(quizzes)
         score, total = self.quiz_manager.question(quizzes)
 
         best_score  = self.state.get("best_score", 0)

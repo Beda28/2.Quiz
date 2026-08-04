@@ -41,11 +41,27 @@ class QuizGame:
 
     def play_quiz(self):
         quizzes = self.state["quizzes"]
-        self.state["score"] = question(quizzes)
-        savestate(self.state)
+        score, total = question(quizzes)
 
-        print("\n최종 결과")
-        self.show_score()
+        best_score = self.state.get("beat_score")
+        is_new_best = score / total * 100 > best_score
+        if is_new_best:
+            self.state["beat_score"] = score / total * 100
+            self.state["best_correct"] = score
+            self.state["best_total"] = total
+
+        savestate(self.state)
+        self.clear_screen()
+
+        print("최종 결과")
+        print(f"맞춘 문제 수: {score}/{total}")
+        print(f"점수: {score / total * 100:.0f}점")
+        
+        if is_new_best:
+            print("축하합니다! 새로운 최고 점수를 달성했습니다!")
+        else:
+            print(f"최고 점수: {best_score:.0f}점")
+        input("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def show_quiz_list(self):
         self.clear_screen()
@@ -55,9 +71,9 @@ class QuizGame:
         input ("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def show_score(self):
-        total = len(self.state["quizzes"])
         self.clear_screen()
-        print(f"현재 점수: {self.state['score'] / total * 100.0:.0f}점")
+        print(f"최고 점수: {self.state['beat_score']:.0f}점")
+        print(f"{self.state['best_total']}문제 중 {self.state['best_correct']}문제 정답")
         input("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def exit_game(self):

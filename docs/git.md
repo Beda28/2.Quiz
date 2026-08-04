@@ -46,5 +46,5 @@ PS [ 프로젝트 폴더 경로 ]> git merge feature/score-percentage
 Updating abc1234..def5678
 Fast-forward
 
-PS [ 프로젝트 폴더 경로 ]> git push origin main
+PS [ 프로젝트 폴더 경로 ]> git push
 ```

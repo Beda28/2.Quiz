@@ -7,10 +7,7 @@ from default_quiz import DEFAULT_QUIZZES
 STATEFile = Path(__file__).with_name("state.json")
 
 def default_state():
-    return {
-        "quizzes": deepcopy(DEFAULT_QUIZZES),
-        "score": 0
-    }
+    return {"quizzes": deepcopy(DEFAULT_QUIZZES)}
 
 def loadstate():
     try:

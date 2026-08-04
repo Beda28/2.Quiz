@@ -186,4 +186,4 @@ class QuizGame:
         print("성공적으로 게임을 종료했습니다.")
 
     def clear_screen(self):
-        os.system("cls")
+        os.system("clear")

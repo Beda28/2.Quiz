@@ -30,7 +30,42 @@
 - 퀴즈 삭제 기능
 - 점수 기록 히스토리 (상세기록)
 
-## 5. 실행 방법
+## 5. 클래스 객체 설명
+### Quiz 클래스
+```bash
+# 기본 초기화 값
+- title   - 퀴즈의 제목
+- choices - 퀴즈의 선택지 목록
+- answer  - 퀴즈의 정답
+- hint    - 퀴즈의 힌트
+
+# 메서드
+- from_dict    - 입력받은 퀴즈 데이터를 딕셔너리로 반환합니다.
+- to_dict      - 클래스의 퀴즈 데이터를 딕셔너리로 반환합니다.
+- show_quiz    - 퀴즈의 선택지 목록을 출력합니다.
+- check_answer - 입력받은 결과값이 정답인지를 반환합니다.
+- play         - 퀴즈를 진행합니다.
+```
+
+### Quiz_game 클래스
+```bash
+# 기본 초기화 값
+- state   - loadState 의 결과값으로, 게임의 진행 데이터를 관리합니다.
+- running - 게임의 진행 상태를 설정합니다.
+
+# 메서드
+- run            - 메뉴를 띄우고, 입력받은 선택지에 따른 메서드 호출을 담당합니다.
+- show_menu      - 메뉴를 출력합니다.
+- add_quiz       - 퀴즈를 추가합니다.
+- play_quiz      - 퀴즈를 시작하고, 결과를 저장합니다.
+- show_quiz_list - 퀴즈 목록을 출력합니다.
+- delete_quiz    - 퀴즈 목록을 출력하고, 지정한 퀴즈를 삭제합니다.
+- show_score     - 최고점수와 게임 기록을 출력합니다.
+- exit_game      - 게임을 종료합니다.
+- clear_screen   - 화면을 청소합니다.
+```
+
+## 6. 실행 방법
 
 ```bash
 git clone https://github.com/Beda28/2.Quiz.git
@@ -38,14 +73,14 @@ cd 2.Quiz
 python main.py
 ```
 
-## 6. 저장 방식
+## 7. 저장 방식
 [ state.json ](state.json)
 
-## 7. 참고 문서
+## 8. 참고 문서
 - [docs/history.md](docs/history.md)
 - [docs/git.md](docs/git.md)
 
-## 8. 인게임 스크린샷
+## 9. 인게임 스크린샷
 ### 퀴즈 메뉴
 ![ 메뉴 이미지 ](images/1.%20menu.png)
 ---

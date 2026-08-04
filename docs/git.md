@@ -23,3 +23,13 @@ PS [ 프로젝트 폴더 경로 ]> git branch
 * feature/score-percentage
   main
 ```
+
+## 3. 업스트림 브랜치 설정 및 push
+
+```bash
+git push --set-upstream origin <브랜치이름>
+```
+
+```bash
+PS [ 프로젝트 폴더 경로 ]> git push --set-upstream origin feature/quiz-add
+```

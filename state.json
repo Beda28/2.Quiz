@@ -54,10 +54,20 @@
             },
             "answer": 3,
             "hint": "옛 로마 제국의 중심지입니다."
+        },
+        {
+            "title": "다음중 물/얼음타입 포켓몬은?",
+            "choices": {
+                "1": "어써러셔",
+                "2": "갸라도스",
+                "3": "파르셀"
+            },
+            "answer": 3,
+            "hint": "얼음처럼 생겼어요."
         }
     ],
-    "best_score": 80.0,
-    "best_correct": 4,
+    "best_score": 100.0,
+    "best_correct": 5,
     "best_total": 5,
     "history": [
         {
@@ -66,6 +76,20 @@
             "correct": 4,
             "hint_count": 0,
             "score": 80.0
+        },
+        {
+            "played_at": "2026-08-04 14:57:43",
+            "total": 5,
+            "correct": 5,
+            "hint_count": 0,
+            "score": 100.0
+        },
+        {
+            "played_at": "2026-08-04 15:02:34",
+            "total": 4,
+            "correct": 4,
+            "hint_count": 0,
+            "score": 100.0
         }
     ]
 }

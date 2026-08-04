@@ -1,7 +1,7 @@
 import os
 import time
 
-from input import read_int
+from input import read_int, read_str
 from quiz import question
 from storage import loadstate, savestate
 
@@ -14,12 +14,12 @@ class QuizGame:
         while self.running:
             self.clear_screen()
             self.show_menu()
-            choice = read_int("선택지를 입력해주세요 : ")
+            choice = read_int("선택지를 입력해주세요 : ", 1, 5)
 
             if choice == 1:
                 self.play_quiz()
             elif choice == 2:
-                pass  # 퀴즈 추가 기능은 아직 구현되지 않았습니다.
+                self.add_quiz()
             elif choice == 3:
                 self.show_quiz_list()
             elif choice == 4:
@@ -39,14 +39,35 @@ class QuizGame:
         print("4. 점수 확인")
         print("5. 게임 종료")
 
+    def add_quiz(self):
+        self.clear_screen()
+        title = read_str("퀴즈 제목을 입력해주세요 : ")
+        choice_len = read_int("선택지 개수를 입력해주세요 (2 ~ 10) : ", 2, 10)
+        choices = {}
+
+        for index in range(1, choice_len + 1):
+            choices[index] = read_str(f"선택지 {index}: ")
+
+        answer = read_int(f"정답 번호를 입력해주세요 (1 ~ {choice_len}) : ", 1, choice_len)
+
+        quiz = {
+            "title": title,
+            "choices": choices,
+            "answer": answer
+        }
+
+        self.state["quizzes"].append(quiz)
+        if savestate(self.state):
+            input("퀴즈가 성공적으로 추가되었습니다. 메뉴로 돌아가려면 Enter를 누르세요...")
+
     def play_quiz(self):
         quizzes = self.state["quizzes"]
         score, total = question(quizzes)
 
-        best_score = self.state.get("beat_score")
+        best_score = self.state.get("best_score", 0)
         is_new_best = score / total * 100 > best_score
         if is_new_best:
-            self.state["beat_score"] = score / total * 100
+            self.state["best_score"] = score / total * 100
             self.state["best_correct"] = score
             self.state["best_total"] = total
 
@@ -55,12 +76,12 @@ class QuizGame:
 
         print("최종 결과")
         print(f"맞춘 문제 수: {score}/{total}")
-        print(f"점수: {score / total * 100:.0f}점")
+        print(f"점수: {score / total * 100:.2f}점")
         
         if is_new_best:
             print("축하합니다! 새로운 최고 점수를 달성했습니다!")
         else:
-            print(f"최고 점수: {best_score:.0f}점")
+            print(f"최고 점수: {best_score:.2f}점")
         input("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def show_quiz_list(self):
@@ -72,8 +93,12 @@ class QuizGame:
 
     def show_score(self):
         self.clear_screen()
-        print(f"최고 점수: {self.state['beat_score']:.0f}점")
-        print(f"{self.state['best_total']}문제 중 {self.state['best_correct']}문제 정답")
+        best_score = self.state.get("best_score", 0)
+        best_total = self.state.get("best_total", 0)
+        best_correct = self.state.get("best_correct", 0)
+
+        print(f"최고 점수: {best_score:.2f}점")
+        print(f"{best_total}문제 중 {best_correct}문제 정답")
         input("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
     def exit_game(self):

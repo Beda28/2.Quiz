@@ -42,7 +42,7 @@ Switched to branch 'main'
 PS [ 프로젝트 폴더 경로 ]> git pull
 Already up to date.
 
-PS [ 프로젝트 폴더 경로 ]> git merge feature/quiz-game
+PS [ 프로젝트 폴더 경로 ]> git merge feature/score-percentage
 Updating abc1234..def5678
 Fast-forward
 

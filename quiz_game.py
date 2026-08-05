@@ -63,6 +63,7 @@ class QuizGame:
 
         quizzes          = [Quiz.from_dict(quiz) for quiz in self.state["quizzes"]]
         random.shuffle(quizzes)
+        
         quiz_count       = read_int(f"몇 문제를 풀까요? (1~{len(quizzes)}): ", 1, len(quizzes))
         selected_quizzes = quizzes[:quiz_count]
         correct_count    = 0

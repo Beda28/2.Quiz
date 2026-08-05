@@ -87,6 +87,25 @@ python main.py
 
 ## 7. 저장 방식
 [ state.json ](state.json)
+```bash
+# 문제 저장
+question - 문제
+choices  - 선택지 목록
+answer   - 정답 번호
+hint     - 힌트
+
+# 최고점수 저장
+beat_score   - 최고 점수(백분율 기준)를 저장합니다.
+best_correct - 최고 기록일 때 맞힌 문제 수를 저장합니다.
+best_total   - 최고 기록일 때 전체 문제 수를 저장합니다.
+
+# 플레이 시간 저장
+played_at  - 플레이한 시간
+total      - 선택한 문제 수
+correct    - 맞힌 문제 수
+hint_count - 사용한 힌트 횟수
+score      - 감점이 반영된 최종 점수
+```
 
 ## 8. 참고 문서
 - [docs/history.md](docs/history.md)

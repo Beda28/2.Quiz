@@ -1,16 +1,16 @@
 from input import read_int
 
 class Quiz:
-    def __init__(self, title, choices, answer, hint=""):
-        self.title   = title
-        self.choices = choices
-        self.answer  = answer
-        self.hint    = hint
+    def __init__(self, question, choices, answer, hint=""):
+        self.question = question
+        self.choices  = choices
+        self.answer   = answer
+        self.hint     = hint
 
     @classmethod
     def from_dict(cls, quiz_data):
         return cls(
-            quiz_data["title"],
+            quiz_data["question"],
             quiz_data["choices"],
             quiz_data["answer"],
             quiz_data.get("hint", "")
@@ -18,14 +18,14 @@ class Quiz:
 
     def to_dict(self):
         return {
-            "title":   self.title,
-            "choices": self.choices,
-            "answer":  self.answer,
-            "hint":    self.hint,
+            "question" : self.question,
+            "choices"  : self.choices,
+            "answer"   : self.answer,
+            "hint"     : self.hint,
         }
 
     def show_quiz(self):
-        print(self.title)
+        print(self.question)
         print("0. 힌트 보기")
 
         for number, content in self.choices.items():

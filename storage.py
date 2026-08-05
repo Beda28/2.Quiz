@@ -7,11 +7,11 @@ STATEFile = Path(__file__).with_name("state.json")
 
 def default_state():
     return {
-        "quizzes":      deepcopy(DEFAULT_QUIZZES),
-        "best_score":   0,
-        "best_correct": 0,
-        "best_total":   0,
-        "history":      [],
+        "quizzes"      : deepcopy(DEFAULT_QUIZZES),
+        "best_score"   : 0,
+        "best_correct" : 0,
+        "best_total"   : 0,
+        "history"      : [],
     }
 
 def loadstate():

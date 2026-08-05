@@ -34,10 +34,10 @@
 ### Quiz 클래스
 ```bash
 # 기본 초기화 값
-- title   - 퀴즈의 제목
-- choices - 퀴즈의 선택지 목록
-- answer  - 퀴즈의 정답
-- hint    - 퀴즈의 힌트
+- question - 퀴즈의 제목
+- choices  - 퀴즈의 선택지 목록
+- answer   - 퀴즈의 정답
+- hint     - 퀴즈의 힌트
 
 # 메서드
 - from_dict    - 입력받은 퀴즈 데이터를 딕셔너리로 반환합니다.

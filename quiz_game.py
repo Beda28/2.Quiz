@@ -40,7 +40,7 @@ class QuizGame:
 
     def add_quiz(self):
         self.clear_screen()
-        title      = read_str("퀴즈 제목을 입력해주세요 : ")
+        question   = read_str("퀴즈 제목을 입력해주세요 : ")
         choice_len = read_int("선택지 개수를 입력해주세요 (2 ~ 10) : ", 2, 10)
         choices    = {}
 
@@ -50,7 +50,7 @@ class QuizGame:
         answer = read_int(f"정답 번호를 입력해주세요 (1 ~ {choice_len}) : ", 1, choice_len)
         hint   = read_str("힌트를 입력해주세요 : ")
 
-        quiz = Quiz(title, choices, answer, hint)
+        quiz = Quiz(question, choices, answer, hint)
 
         self.state["quizzes"].append(quiz.to_dict())
         if savestate(self.state):
@@ -120,7 +120,7 @@ class QuizGame:
 
         for quiz_number, quiz_data in enumerate(self.state["quizzes"], start=1):
             quiz = Quiz.from_dict(quiz_data)
-            print(f"{quiz_number}. {quiz.title}")
+            print(f"{quiz_number}. {quiz.question}")
 
         input ("\n메뉴로 돌아가려면 Enter를 누르세요...")
 
@@ -137,7 +137,7 @@ class QuizGame:
 
         for index, quiz_data in enumerate(quizzes, start=1):
             quiz = Quiz.from_dict(quiz_data)
-            print(f"{index}. {quiz.title}")
+            print(f"{index}. {quiz.question}")
 
         delete_number = read_int(f"\n삭제할 퀴즈 번호를 입력해주세요 (0~{len(quizzes)}): ", 0, len(quizzes))
 
@@ -149,7 +149,7 @@ class QuizGame:
 
         if savestate(self.state):
             input(
-                f"'{deleted_quiz.title}' 퀴즈를 삭제했습니다.\n"
+                f"'{deleted_quiz.question}' 퀴즈를 삭제했습니다.\n"
                 "메뉴로 돌아가려면 Enter를 누르세요..."
             )
 
